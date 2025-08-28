@@ -1,40 +1,29 @@
 {
+  "name": "project-map-1",
   "private": true,
-  "workspaces": [
-    "backend",
-    "frontend"
-  ],
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "predev": "fuser -k 3000/tcp 2>/dev/null || true && fuser -k 5173/tcp 2>/dev/null || true",
-    "install:all": "yarn install",
-    "start:backend": "yarn workspace backend start",
-    "start:frontend": "yarn workspace cmedia-frontend dev",
-    "dev": "concurrently \"yarn workspace backend start\" \"yarn workspace cmedia-frontend dev\"",
-    "lint": "yarn workspaces run lint",
-    "lint:all": "yarn workspaces run lint",
-    "lint:backend": "yarn workspace backend lint",
-    "lint:frontend": "yarn workspace cmedia-frontend lint",
-    "lint:fix": "yarn workspaces run lint:fix",
-    "lint:fix:backend": "yarn workspace backend lint:fix",
-    "lint:fix:frontend": "yarn workspace cmedia-frontend lint:fix",
-    "test": "yarn workspaces run test",
-    "test:all": "yarn workspaces run test",
-    "test:backend": "yarn workspace backend test",
-    "test:frontend": "yarn workspace cmedia-frontend test",
-    "test:backend-db": "yarn workspace backend test-db",
-    "seed:backend-db": "yarn workspace backend seed-db",
-    "clean:all": "rm -rf node_modules yarn.lock && yarn workspaces foreach --all --no-private --exec \"rm -rf node_modules package-lock.json yarn.lock\"",
-    "prepare": "husky install",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
-    "build": "yarn workspaces run build",
-    "build:backend": "yarn workspace backend build",
-    "build:frontend": "yarn workspace cmedia-frontend build",
-    "start:prod:backend": "yarn workspace backend start:prod"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "clean": "rm -rf node_modules yarn.lock package-lock.json dist"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.26.1",
+    "axios": "^1.6.0"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2",
-    "husky": "^9.0.11",
-    "prettier": "^3.2.5"
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "vite": "^5.0.8"
   }
 }

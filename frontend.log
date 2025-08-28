@@ -1,0 +1,9 @@
+yarn run v1.22.22
+warning ../package.json: No license field
+$ vite
+Port 3000 is in use, trying another one...
+
+  VITE v5.4.19  ready in 249 ms
+
+  ➜  Local:   http://localhost:3001/
+  ➜  Network: use --host to expose
