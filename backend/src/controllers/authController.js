@@ -12,10 +12,37 @@ import {
 } from "../services/databaseService.js";
 
 /**
- * Handles user registration.
- * Hashes the password and inserts a new user into the staff table.
+ * Handles customer registration.
+ * Hashes the password and inserts a new customer into the customers table.
  */
 export const register = async (req, res) => {
+  const { full_name, email, password, company_name, phone } = req.body;
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const customerId = await insertAndGetId(
+      "INSERT INTO customers (full_name, email, password_hash, company_name, phone) VALUES (?, ?, ?, ?, ?)",
+      [full_name, email, hashedPassword, company_name || null, phone || null],
+    );
+    res.status(201).json({
+      message: "Customer registered successfully!",
+      customerId: customerId,
+    });
+  } catch (err) {
+    console.error("Customer registration error:", err);
+    // databaseService.js already handles ER_DUP_ENTRY and throws AppError with 409
+    if (err instanceof AppError) {
+      throw err;
+    }
+    throw new AppError("An error occurred during customer registration.", 500);
+  }
+};
+
+/**
+ * Handles staff registration.
+ * Hashes the password and inserts a new user into the staff table.
+ */
+export const registerStaff = async (req, res) => {
   const { full_name, email, password, role_id } = req.body; // Include role_id for staff registration
 
   try {
@@ -25,16 +52,16 @@ export const register = async (req, res) => {
       [full_name, email, hashedPassword, role_id],
     );
     res.status(201).json({
-      message: "User registered successfully!",
+      message: "Staff registered successfully!",
       userId: userId,
     });
   } catch (err) {
-    console.error("Registration error:", err);
+    console.error("Staff registration error:", err);
     // databaseService.js already handles ER_DUP_ENTRY and throws AppError with 409
     if (err instanceof AppError) {
       throw err;
     }
-    throw new AppError("An error occurred during registration.", 500);
+    throw new AppError("An error occurred during staff registration.", 500);
   }
 };
 
@@ -65,11 +92,26 @@ export const login = async (req, res) => {
           userId: customer.customer_id,
           email: customer.email,
           role: "customer",
+          userType: "customer",
         },
         process.env.JWT_SECRET,
         { expiresIn: "1h" },
       );
-      return res.json({ message: "Login successful!", token });
+      
+      const userResponse = {
+        customer_id: customer.customer_id,
+        full_name: customer.full_name,
+        email: customer.email,
+        company_name: customer.company_name,
+        phone: customer.phone,
+        userType: "customer"
+      };
+      
+      return res.json({ 
+        message: "Login successful!", 
+        token,
+        user: userResponse
+      });
     }
 
     // If not found in customers, check staff table
@@ -93,11 +135,25 @@ export const login = async (req, res) => {
           email: staff.email,
           role: "staff",
           roleId: staff.role_id,
+          userType: "staff",
         },
         process.env.JWT_SECRET,
         { expiresIn: "1h" },
       );
-      return res.json({ message: "Login successful!", token });
+      
+      const userResponse = {
+        staff_id: staff.staff_id,
+        full_name: staff.full_name,
+        email: staff.email,
+        role_id: staff.role_id,
+        userType: "staff"
+      };
+      
+      return res.json({ 
+        message: "Login successful!", 
+        token,
+        user: userResponse
+      });
     }
 
     // Neither customer nor staff found

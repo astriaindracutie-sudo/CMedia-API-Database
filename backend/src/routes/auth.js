@@ -6,6 +6,7 @@ import {
   login,
   staffLogin,
   register,
+  registerStaff,
   getAllStaff,
   getStaffById,
   updateStaff,
@@ -26,8 +27,11 @@ router.post("/login", loginValidationRules(), validate, login);
 // Public route for staff login specifically
 router.post("/staff/login", loginValidationRules(), validate, staffLogin);
 
-// Public route for user registration (for new staff, not customers)
+// Public route for customer registration
 router.post("/register", createCustomerValidationRules(), validate, register);
+
+// Route for staff registration (Admin only)
+router.post("/staff/register", createCustomerValidationRules(), validate, registerStaff);
 
 // Routes for Staff Management (Admin Only) - Temporarily disabled auth for testing
 router.get("/staff", getAllStaff);

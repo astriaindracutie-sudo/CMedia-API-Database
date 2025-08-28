@@ -1,5 +1,6 @@
 // backend/src/routes/subscriptions.js
 import { Router } from "express";
+import { authenticateToken } from "../middlewares/auth.js";
 import {
   createSubscription,
   getSubscriptionById,
@@ -8,6 +9,24 @@ import {
 } from "../controllers/subscriptionController.js";
 
 const router = Router();
+
+// Get current user's subscriptions (authenticated)
+router.get("/", authenticateToken, async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const userType = req.user.userType || req.user.role;
+    
+    if (userType === 'customer') {
+      const subscriptions = await getSubscriptionsByCustomerId(userId);
+      res.json(subscriptions);
+    } else {
+      res.status(403).json({ error: "Access denied. Customer access required." });
+    }
+  } catch (error) {
+    console.error("Get user subscriptions error:", error);
+    res.status(500).json({ error: "Internal server error." });
+  }
+});
 
 // Create new subscription (accepts both planId and packageId for compatibility)
 router.post("/", async (req, res) => {
