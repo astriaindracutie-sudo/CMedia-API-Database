@@ -1,0 +1,67 @@
+### Must-Have Frontend Features:
+
+1.  **Authentication & User Management:**
+    *   **User Registration Page:** For new customers to sign up. (Existing: `project-map-1/src/pages/RegisterPage.jsx`)
+    *   **Login Page:** For existing customers to access their accounts. (Existing: `project-map-1/src/pages/LoginPage.jsx`)
+    *   **Protected Routes:** Ensure only authenticated users can access certain parts of the application. (Existing: `project-map-1/src/routes/PrivateRoute.jsx`)
+    *   **User Dashboard/Account Page:** A central place for users to manage their services. (Existing: `project-map-1/src/pages/CustomerDashboard.jsx`)
+    *   **Password Reset/Forgot Password functionality:** Essential for user convenience and security.
+    *   **User Profile Management:** Allow users to update their personal information.
+
+2.  **Service Catalog & Product Details:**
+    *   **Landing Page/Homepage:** An inviting entry point showcasing the company's main offerings.
+    *   **Dedicated Pages for Each Service Category:**
+        *   High-Speed Fiber Optic Connections
+        *   Dedicated Internet with Guaranteed Uptime
+        *   Broadband Solutions (Small Offices/Home Offices)
+        *   Bundled Internet & IPTV Packages
+        *   High-Performance Website Hosting
+        *   Server Solutions (Colocation, VPS, Email Servers)
+        *   Smartphone-Controlled Online CCTV
+        *   Network System Management (LAN/WAN)
+        *   Server Configuration, Maintenance, Procurement
+        *   Reseller Partnerships (for small enterprises/community operators)
+    *   **Detailed Service Descriptions:** Each service page should provide clear, concise information about features, benefits, and pricing (if applicable).
+
+3.  **Customer Account Management:**
+    *   **View Subscriptions:** Users should be able to see their active and past service subscriptions.
+    *   **Billing & Payment Section:**
+        *   View invoices/bills.
+        *   Payment options (e.g., credit card, bank transfer).
+        *   Payment history.
+    *   **Support/Ticketing System:** Allow users to submit support requests and track their status.
+    *   **Service Usage Monitoring:** (e.g., data usage for internet plans).
+
+4.  **Admin Panel (if applicable, usually separate or restricted access):**
+    *   **User Management:** Create, edit, delete users.
+    *   **Service/Product Management:** Add, modify, remove services/products.
+    *   **Subscription Management:** View and manage customer subscriptions.
+    *   **Customer Support Management:** View and respond to support tickets.
+    *   **Reporting & Analytics:** Basic dashboards for business insights.
+
+### Cool Optional Frontend Features:
+
+1.  **Interactive Service Configurator:**
+    *   A tool where users can build their own custom bundles (e.g., choosing internet speed, adding IPTV channels, selecting hosting features) and see the price dynamically update.
+2.  **Availability Checker:**
+    *   For fiber optic or broadband services, a tool where users can enter their address to see if the service is available in their area.
+3.  **Live Chat Support:**
+    *   Integrate a live chat feature for immediate customer assistance.
+4.  **Knowledge Base/FAQ Section:**
+    *   A searchable repository of common questions and troubleshooting guides.
+5.  **Service Status Page:**
+    *   Display real-time information about network outages or scheduled maintenance.
+6.  **Testimonials/Case Studies:**
+    *   Showcase successful client stories to build trust.
+7.  **Responsive Design & Mobile-First Approach:**
+    *   Ensure the website looks and functions perfectly on all devices. (This is almost a must-have in today's world, but listing it here as a "cool optional" if we're focusing purely on core functionality first).
+8.  **SEO Optimization:**
+    *   Proper meta tags, sitemaps, and content structure for better search engine visibility.
+9.  **Animated Backgrounds/Visuals:**
+    *   Building on `Starfield.tsx` from `cmedia-api/frontend/src/components/`, we could use dynamic, subtle animations to enhance the user experience and reflect the "high-speed" or "connectivity" aspects.
+10. **Multi-language Support:**
+    *   If the company targets a diverse audience.
+
+I've created a TODO list based on the must-have features. I will mark them as in-progress as we work on them.
+
+Which of these must-have features would you like to start with first? Given `project-map-1`'s existing structure, perhaps we could begin by integrating the authentication with the backend or enhancing the `CustomerDashboard.jsx`.

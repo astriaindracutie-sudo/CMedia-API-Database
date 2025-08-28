@@ -1,0 +1,9 @@
+yarn run v1.22.22
+$ yarn workspace backend start
+$ node src/index.js
+✅ Loaded DB config: { host: 'localhost', user: 'Russell', database: 'cmedia_db' }
+✅ JWT_SECRET loaded
+✅ PORT: 3000
+✅ CORS configured for origin: http://localhost:5173
+✅ Database connection pool verified.
+⚡️ CMedia API server running on port 3000
