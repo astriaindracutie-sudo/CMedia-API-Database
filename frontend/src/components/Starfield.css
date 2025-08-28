@@ -1,0 +1,15 @@
+.starfield-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border: none;
+  outline: none;
+}
+
+.starfield-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
